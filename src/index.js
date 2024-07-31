@@ -1,16 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './styles/global.css';
+import ReactDOM from 'react-dom';
+import './index.css';  // Asegúrate de que la ruta sea correcta
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { CssBaseline } from '@mui/material';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <React.StrictMode>
-        <CssBaseline />
-        <App />
-    </React.StrictMode>
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 reportWebVitals();

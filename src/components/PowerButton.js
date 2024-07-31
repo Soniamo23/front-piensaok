@@ -1,14 +1,16 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import '../styles/App.css';
 
-const PowerButton = ({ systemOn, toggleSystem }) => {
-    return (
-        <Box>
-            <Button variant="contained" color={systemOn ? "primary" : "secondary"} onClick={toggleSystem}>
-                {systemOn ? "Apagar Sistema" : "Encender Sistema"}
-            </Button>
-        </Box>
-    );
+const PowerButton = ({ isSystemOn, handlePowerToggle }) => {
+  return (
+    <div className="power-button-container">
+      <button 
+        onClick={handlePowerToggle}
+        className="power-button">
+        {isSystemOn ? 'SISTEMA ENCENDIDO' : 'ENCENDER SISTEMA'}
+      </button>
+    </div>
+  );
 };
 
 export default PowerButton;

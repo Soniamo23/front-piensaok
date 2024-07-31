@@ -1,32 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Box } from '@mui/material';
-import Header from './Header';
-import LightSensorDisplay from './LightSensorDisplay';
+import React, { useState } from 'react';
 import LightIntensitySlider from './LightIntensitySlider';
+import LightSensorDisplay from './LightSensorDisplay';
 import PowerButton from './PowerButton';
 import '../styles/App.css';
 
-const Layout = ({ lightLevel, intensity, setIntensity, systemOn, toggleSystem }) => {
-    return (
-        <Container className="container">
-            <Header />
-            <Box my={4}>
-                <div className="light-sensor">
-                    <div className="light-sensor-display">
-                        <LightSensorDisplay lightLevel={lightLevel} />
-                    </div>
-                </div>
-                <div className="slider">
-                    <div className="intensity-slider">
-                        <LightIntensitySlider intensity={intensity} setIntensity={setIntensity} />
-                    </div>
-                </div>
-                <div className="power-button-container">
-                    <PowerButton systemOn={systemOn} toggleSystem={toggleSystem} />
-                </div>
-            </Box>
-        </Container>
-    );
+const Layout = () => {
+  const [isSystemOn, setIsSystemOn] = useState(false);
+
+  const handlePowerToggle = () => {
+    setIsSystemOn(prevState => !prevState);
+  };
+
+  const handleSystemOff = () => {
+    setIsSystemOn(false);
+  };
+
+  return (
+    <div className="container">
+      <header className="header">
+        <h1>Sistema de Iluminación Automático</h1>
+      </header>
+      <LightSensorDisplay />
+      <LightIntensitySlider />
+      <PowerButton isSystemOn={isSystemOn} handlePowerToggle={handlePowerToggle} />
+      <div className="light-sensor light-sensor-display">
+        <h3>Intensidad de luz normal</h3>
+        <button 
+          className="power-button"
+          onClick={handleSystemOff}
+          disabled={!isSystemOn}>
+          APAGAR SISTEMA
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default Layout;

@@ -1,24 +1,23 @@
-import React from 'react';
-import { Box, Slider, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import '../styles/App.css';
 
-const LightIntensitySlider = ({ intensity, setIntensity }) => {
-    const handleSliderChange = (event, newValue) => {
-        setIntensity(newValue);
-    };
+const LightIntensitySlider = () => {
+  const [intensity, setIntensity] = useState(50);
 
-    return (
-        <Box>
-            <Typography variant="h6">Ajustar Intensidad de Luz</Typography>
-            <Slider
-                value={intensity}
-                onChange={handleSliderChange}
-                aria-labelledby="intensity-slider"
-                min={0}
-                max={100}
-                valueLabelDisplay="auto"
-            />
-        </Box>
-    );
+  return (
+    <div style={{ margin: '20px 0' }}>
+      <h3>Ajustar Intensidad de Luz</h3>
+      <p>Intensidad actual: {intensity}</p>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value={intensity}
+        onChange={(e) => setIntensity(e.target.value)}
+        style={{ width: '100%' }}
+      />
+    </div>
+  );
 };
 
 export default LightIntensitySlider;
